@@ -30,10 +30,10 @@ def main():
     kk_img = pg.image.load("ex02/fig/3.png")
     kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
     #追加機能1　キーによって方向変換
-    kk_img_up= pg.transform.rotozoom(kk_img, -90, 1.0)
-    kk_img_down = pg.transform.rotozoom(kk_img, 90, 1.0)
-    kk_img_left = pg.transform.rotozoom(kk_img, 0, 1.0)
-    kk_img_right = pg.transform.flip(kk_img,True, False)
+    kk_img_up= pg.transform.rotozoom(kk_img, -90, 1.0) #下
+    kk_img_down = pg.transform.rotozoom(kk_img, 90, 1.0) #上
+    kk_img_left = pg.transform.rotozoom(kk_img, 0, 1.0)  #左
+    kk_img_right = pg.transform.flip(kk_img,True, False)  #右
 
     kk_img_sad = pg.image.load("ex02/fig/8.png")
     kk_rct = kk_img.get_rect()  #練習３こうかとんSurfaceのrect抽出
@@ -57,14 +57,15 @@ def main():
             if event.type == pg.QUIT: 
                 return
         if kk_rct.colliderect(enn_rct):  #練習５こうかとんの衝突
-            screen.blit(kk_img_sad,0,1.0)
+            screen.blit(kk_img_sad,0,1.0)  #演習3 衝突時の画像切り替え
             print("Game Over")
+            pg.display.update()
             return
             
         key_lst = pg.key.get_pressed() #キーが押されたら
         sum_mv = [0, 0]
 
-        for k, tpl in delta.items():
+        for k, tpl in delta.items():  #方向の種類文リストを返す
             if key_lst[k]:
                 sum_mv[0] += tpl[0]
                 sum_mv[1] += tpl[1]
