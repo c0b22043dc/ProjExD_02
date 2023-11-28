@@ -38,13 +38,17 @@ def main():
     kk_img_sad = pg.image.load("ex02/fig/8.png")
     kk_rct = kk_img.get_rect()  #練習３こうかとんSurfaceのrect抽出
     kk_rct.center = 900, 400  #練習３：こうかとんの初期座標
+    
     enn = pg.Surface((20,20))  #練習１　一片が２０の正方形を描画
+    
     pg.draw.circle(enn, (255, 0, 0), (10, 10), 10 )  #半径１０の赤い円の描画
+    
     enn.set_colorkey((0, 0, 0))  #黒の透明化
     enn_rct = enn.get_rect()
     enn_rct.centerx = random.randint(0,WIDTH)
     enn_rct.centery = random.randint(0,HEIGHT)
     accs = [a for a in range(1, 11)]
+    
     vx, vy = +5, +5  #練習２　爆弾の移動
     clock = pg.time.Clock()
     tmr = 0
@@ -59,6 +63,7 @@ def main():
             
         key_lst = pg.key.get_pressed() #キーが押されたら
         sum_mv = [0, 0]
+
         for k, tpl in delta.items():
             if key_lst[k]:
                 sum_mv[0] += tpl[0]
@@ -72,16 +77,15 @@ def main():
     
         yoko, tate = check_bound(enn_rct)
         if key_lst[pg.K_UP]:
-           
             screen.blit(kk_img_up,kk_rct)
-        if key_lst[pg.K_DOWN]:
         
+        if key_lst[pg.K_DOWN]:
            screen.blit(kk_img_down,kk_rct)
+        
         if key_lst[pg.K_LEFT]:
-             
             screen.blit(kk_img_left,kk_rct)
+
         if key_lst[pg.K_RIGHT]:
-            
             screen.blit(kk_img_right,kk_rct)
         avx, avy = vx*accs[min(tmr//500, 9)], vy*accs[min(tmr//500,9)] #追加機能2　実装途中
         if not yoko:  #横にはみ出たら
