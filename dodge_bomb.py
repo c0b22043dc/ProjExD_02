@@ -10,6 +10,14 @@ delta = {
     pg.K_LEFT: (-5, 0),
     pg.K_RIGHT: (+5, 0)
 }
+def check_bound(rct: pg.Rect) -> tuple[bool, bool]:  #練習４　爆弾判定
+    yoko, take = True, True
+    if rct.left < 0 or WIDTH < rct.right:
+        yoko = False
+    if rct.top < 0 or HEIGHT < rct.bottom:
+        tate = False
+    return yoko, tate
+
 
 
 
@@ -43,8 +51,16 @@ def main():
                 sum_mv[1] += tpl[1]
         screen.blit(bg_img, [0, 0])
         kk_rct.move_ip(sum_mv[0], sum_mv[1])
+        if check_bound(kk_rct) !=(True, True):
+            kk_rct.move_ip(-sum_mv[0], -sum_mv[1])
         screen.blit(kk_img, kk_rct) #練習３　こうかとんの移動
         enn_rct.move_ip(vx,vy)
+        yoko, tate = check_bound(enn_rct)
+        if not yoko:  #横にはみ出たら
+            vx *= -1
+        if not tate:  #縦にはみ出たら
+            vy *= -1
+        enn_rct.move_ip(vx, vy)
         screen.blit(enn,enn_rct)
         pg.display.update()
         tmr += 1
