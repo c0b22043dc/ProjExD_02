@@ -43,6 +43,9 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return
+        if kk_rct.colliderect(enn_rct):  #練習５こうかとんの衝突
+            print("Game Over")
+            return
         key_lst = pg.key.get_pressed() #キーが押されたら
         sum_mv = [0, 0]
         for k, tpl in delta.items():
