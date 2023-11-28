@@ -83,7 +83,7 @@ def main():
         if key_lst[pg.K_RIGHT]:
             
             screen.blit(kk_img_right,kk_rct)
-        avx, avy = vx*accs[min(tmr//500, 9)], vy*accs[min(tmr//500,9)]
+        avx, avy = vx*accs[min(tmr//500, 9)], vy*accs[min(tmr//500,9)] #追加機能2　実装途中
         if not yoko:  #横にはみ出たら
             vx *= -1
         if not tate:  #縦にはみ出たら
