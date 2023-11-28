@@ -6,6 +6,7 @@ import random
 WIDTH, HEIGHT = 1600, 900
 
 
+
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -18,19 +19,24 @@ def main():
     enn_rct = enn.get_rect()
     enn_rct.centerx = random.randint(0,WIDTH)
     enn_rct.centery = random.randint(0,HEIGHT)
+    vx, vy = +5, +5  #練習２　爆弾の移動
     clock = pg.time.Clock()
     tmr = 0
     while True:
+        
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return
 
         screen.blit(bg_img, [0, 0])
         screen.blit(kk_img, [900, 400])
+        enn_rct.move_ip(vx,vy)
         screen.blit(enn,enn_rct)
         pg.display.update()
         tmr += 1
-        clock.tick(10)
+        clock.tick(50)
+        vx += 5
+        vy += 5
 
 
 if __name__ == "__main__":
