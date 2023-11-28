@@ -11,7 +11,7 @@ delta = {
     pg.K_RIGHT: (+5, 0)
 }
 def check_bound(rct: pg.Rect) -> tuple[bool, bool]:  #練習４　爆弾判定
-    yoko, take = True, True
+    yoko, tate = True, True
     if rct.left < 0 or WIDTH < rct.right:
         yoko = False
     if rct.top < 0 or HEIGHT < rct.bottom:
@@ -68,8 +68,7 @@ def main():
         pg.display.update()
         tmr += 1
         clock.tick(50)
-        vx += 5
-        vy += 5
+        
 
 
 if __name__ == "__main__":
